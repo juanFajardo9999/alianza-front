@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h5 class="modal-title">Create New Client</h5>
+    <button type="button" class="btn-close" (click)="onCancel()"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="newClientForm">
+      <div class="form-group">
+        <label for="businessId">Name</label>
+        <input formControlName="businessId" class="form-control" id="businessId" />
+        <div *ngIf="newClientForm.get('businessId')?.invalid && newClientForm.get('businessId')?.touched" class="text-danger">
+          <small *ngIf="newClientForm.get('businessId')?.hasError('required')">Business ID is required.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input formControlName="email" class="form-control" id="email" />
+        <div *ngIf="newClientForm.get('email')?.invalid && newClientForm.get('email')?.touched" class="text-danger">
+          <small *ngIf="newClientForm.get('email')?.hasError('required')">Email is required.</small>
+          <small *ngIf="newClientForm.get('email')?.hasError('email')">Please enter a valid email address.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input formControlName="phone" class="form-control" id="phone" />
+        <div *ngIf="newClientForm.get('phone')?.invalid && newClientForm.get('phone')?.touched" class="text-danger">
+          <small *ngIf="newClientForm.get('phone')?.hasError('required')">Phone number is required.</small>
+          <small *ngIf="newClientForm.get('phone')?.hasError('pattern')">Phone number can only contain digits.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input formControlName="dateAdded" class="form-control" type="date" id="startDate" />
+        <div *ngIf="newClientForm.get('dateAdded')?.invalid && newClientForm.get('dateAdded')?.touched" class="text-danger">
+          <small *ngIf="newClientForm.get('dateAdded')?.hasError('required')">Start Date is required.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="endDate">End Date</label>
+        <input formControlName="endDate" class="form-control" type="date" id="endDate" />
+        <div *ngIf="newClientForm.get('endDate')?.invalid && newClientForm.get('endDate')?.touched" class="text-danger">
+          <small *ngIf="newClientForm.get('endDate')?.hasError('required')">End Date is required.</small>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    <button class="btn btn-primary" (click)="onSubmit()" [disabled]="newClientForm.invalid">Create</button>
+  </div>
+  

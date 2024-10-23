@@ -1,0 +1,19 @@
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .bg-light {
+    background-color: #f8f9fa !important;
+  }
+  
+  .nav-link.active {
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .sidebar {
+    width: 25rem !important;
+    height: 100vh;
+  }
+  

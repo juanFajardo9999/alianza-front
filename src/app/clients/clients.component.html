@@ -1,0 +1,121 @@
+<div class="container-fluid">
+  <div class="d-flex flex-row">
+    <!-- Menú lateral -->
+    <app-sidebar></app-sidebar>
+
+    <!-- Área de trabajo -->
+    <div class="col-md-9 p-4 content-area">
+      <!-- Botones New y Export -->
+      <div class="d-flex justify-content-start mb-3">
+        <button class="btn btn-primary mr-2" (click)="toggleNewClientModal()">
+          New
+        </button>
+        <button class="btn btn-success">Export</button>
+      </div>
+
+      <!-- Formulario de búsqueda -->
+      <div class="d-flex flex-row align-items-center mb-3">
+        <form
+          [formGroup]="searchForm"
+          class="form-inline d-flex align-items-center"
+        >
+          <input
+            formControlName="sharedKey"
+            class="form-control mr-2 sharedKey"
+            placeholder="Enter shared key"
+          />
+          <button class="btn btn-primary searchButton" (click)="searchClientes()">
+            Search
+          </button>
+        </form>
+        <!-- Botón de búsqueda avanzada -->
+        <button class="btn btn-secondary" style="margin-left: 1rem;" (click)="toggleAdvancedSearch()">
+          Advanced Search
+        </button>
+      </div>
+
+       <!-- Búsqueda avanzada -->
+       <div *ngIf="showAdvancedSearch" class="mt-4">
+        <h5>Advanced Search</h5>
+        <form [formGroup]="advancedSearchForm" class="form-row">
+          <div class="form-group col-md-3">
+            <label for="businessId">Name</label>
+            <input
+              formControlName="businessId"
+              class="form-control"
+              id="businessId"
+            />
+          </div>
+          <div class="form-group col-md-3">
+            <label for="phone">Phone</label>
+            <input formControlName="phone" class="form-control" id="phone" />
+          </div>
+          <div class="form-group col-md-3">
+            <label for="email">Email</label>
+            <input formControlName="email" class="form-control" id="email" />
+          </div>
+          <div class="form-group col-md-3">
+            <label for="startDate">Start Date</label>
+            <input
+              formControlName="dateAdded"
+              class="form-control"
+              type="date"
+              id="startDate"
+            />
+          </div>
+          <div class="form-group col-md-3">
+            <label for="endDate">End Date</label>
+            <input
+              formControlName="endDate"
+              class="form-control"
+              type="date"
+              id="endDate"
+            />
+          </div>
+        </form>
+        <button class="btn btn-primary mt-2" (click)="advancedSearch()">
+          Search
+        </button>
+      </div>
+
+      <!-- Tabla de clientes -->
+      <div class="table-responsive">
+        <table class="table table-striped mt-4">
+          <thead>
+            <tr>
+              <th>Shared Key</th>
+              <th>Business ID</th>
+              <th>E-mail</th>
+              <th>Phone</th>
+              <th>Date Added</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cliente of clients">
+              <td>{{ cliente.sharedKey }}</td>
+              <td>{{ cliente.businessId }}</td>
+              <td>{{ cliente.email }}</td>
+              <td>{{ cliente.phone }}</td>
+              <td>{{ cliente.dateAdded }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+     
+
+<!-- Modal para crear un nuevo cliente -->
+<div *ngIf="showNewClientModal" class="modal fade show d-block" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <app-client-form
+          [newClientForm]="newClientForm"
+          (createClient)="createClient()"
+          (toggleNewClientModal)="toggleNewClientModal()"
+        ></app-client-form>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+</div>

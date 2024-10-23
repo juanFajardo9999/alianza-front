@@ -1,0 +1,21 @@
+.table-responsive {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.table {
+  margin-top: 1rem;
+}
+
+.content-area {
+  padding: 20px;
+  margin-top: 5rem;
+}
+
+.sharedKey {
+  border-radius: 2rem 0 0 2rem;
+}
+
+.searchButton {
+  border-radius: 0 2rem 2rem 0;
+}
